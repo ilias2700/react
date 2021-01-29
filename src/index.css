@@ -1,14 +1,229 @@
+/* * It's ok to have a few of styles right? * Style inspired by: https://dribbble.com/shots/3440657--3-Invisible-series-TO-DO-app */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #e8ecf4;
+  height: 100vh;
+  font-family: "Helvetica", Sans-Serif;
+  background-image: url("./components/background.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center ;
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.todo-app {
+  margin: 10px auto;
+  width: 100%;
+  max-width: 400px;
+  padding: 30px 30px 30px;
+  background-color: #a6a8ba;
+  border-radius: 25px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+}
+.todo-app h2 {
+  padding: 0;
+  margin: 0;
+  color: #00d6f1;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+}
+.filter-tabs .filter {
+  display: inline-block;
+  margin-right: 10px;
+  height: 25px;
+  line-height: 25px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+  text-transform: uppercase;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.filter-tabs .filter span {
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 15px;
+  height: 20px;
+  line-height: 20px;
+  padding: 0 5px;
+  background-color: #c3c5d0;
+  color: #fff;
+  text-align: center;
+  border-radius: 13px;
+  font-size: 10px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+.filter-tabs .filter.disabled {
+  color: #00d6f1;
+  text-decoration: none;
+  pointer-events: none;
+  border-bottom-color: #00d6f1;
+}
+.filter-tabs .filter.disabled span {
+  background-color: #00d6f1;
+}
+.item-form {
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.item-form label {
+  color: #fff;
+  display: block;
+}
+.item-form input {
+  display: block;
+  margin-top: 5px;
+  width: 100%;
+  padding: 15px;
+  background-color: #f3f2f5;
+  color: #a6a8ba;
+  border: none;
+  border-radius: 20px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 0px 0px #00d6f1;
+  outline: none;
+  transition: box-shadow 0.3s;
+}
+.item-form input:focus {
+  box-shadow: 0px 0px 0px 3px #00d6f1;
+}
+.item-list {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+.item-list .placeholder {
+  padding: 10px 0;
+  color: #c3c5d0;
+}
+.item-list .item {
+  position: relative;
+  padding: 5px 30px;
+  margin: 0 -30px;
+  background-color: #a6a8ba;
+  
+}
+.item-list .item label {
+  position: absolute;
+}
+.item-list .item input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+.item-list .item input[type="checkbox"] + .checkbox {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  vertical-align: middle;
+  border: 2px solid #c3c5d0;
+  border-radius: 50%;
+  transition: border-color 0.3s;
+}
+.item-list .item input[type="checkbox"] + .checkbox:after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+.item-list .item input[type="checkbox"]:checked + .checkbox {
+  border-color: #00d6f1;
+}
+.item-list .item input[type="checkbox"]:checked + .checkbox:after {
+  background-color: #00d6f1;
+}
+.item-list .item button {
+  position: absolute;
+  right: 30px;
+  color: #00d6f1;
+  background-color: transparent;
+  border: none;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  margin-top: -10px;
+  cursor: pointer;
+  padding: 0;
+  transition: 0.4s;
+}
+.item-list .item button:hover, .item-list .item button:focus {
+  background-color: #fff;
+  transform: rotate(135deg);
+}
+.item-list .item .text-wrapper {
+  position: relative;
+  display: block;
+  margin-left: 45px;
+  margin-right: 45px;
+}
+.item-list .item .text-wrapper span, .item-list .item .text-wrapper s {
+  display: block;
+  line-height: 25px;
+  color: #4c565e;
+  padding: 2px 0;
+  max-height: 100px;
+  overflow: hidden;
+  transition: opacity 0.3s, max-height 0.2s;
+}
+.item-list .item .text-wrapper input {
+  position: absolute;
+  padding: 5px 0;
+  top: 0;
+  left: 0px;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  opacity: 0;
+  z-index: -1;
+  color: #4c565e;
+  outline: none;
+  transition: opacity 0s;
+}
+.item-list .item.editing {
+  background-color: #f9e491;
+  transition: background-color 0.3s;
+}
+.item-list .item.editing .text-wrapper input {
+  opacity: 1;
+  z-index: 1;
+}
+.item-list .item.editing .text-wrapper s, .item-list .item.editing .text-wrapper span {
+  opacity: 0;
+  max-height: 25px;
+}
+.footer-actions{
+  display: flex;
+  justify-content: center;
+}
+.footer-actions a {
+  display: inline-block;
+  background-color: #00d6f1;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 0px 0px #ff4d00;
+  transition: opacity 0.2s, box-shadow 0.3s;
+}
+.footer-actions a:hover, .footer-actions a:focus {
+  opacity: 0.8;
+  box-shadow: 0px 0px 0px 2px #00d6f1;
+  background-color: #00d6f1;
+}
+.footer-actions a.disabled {
+  opacity: 0.4;
+  cursor: default;
 }
